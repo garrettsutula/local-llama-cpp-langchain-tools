@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/PromptTemplate",
+    "definitions": {
+        "PromptTemplate": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "template": {
+                    "type": "string"
+                },
+                "template_input_variables": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "input_variables": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "examples": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Example"
+                    }
+                },
+                "prefix": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                },
+                "response_schemas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseSchema"
+                    }
+                }
+            },
+            "required": [
+                "examples",
+                "input_variables",
+                "prefix",
+                "response_schemas",
+                "suffix",
+                "template",
+                "template_input_variables"
+            ],
+            "title": "Prompt Template"
+        },
+        "Example": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "input": {
+                    "type": "string"
+                },
+                "prompt": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "input",
+                "prompt"
+            ],
+            "title": "Example"
+        },
+        "ResponseSchema": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "name"
+            ],
+            "title": "ResponseSchema"
+        }
+    }
+}

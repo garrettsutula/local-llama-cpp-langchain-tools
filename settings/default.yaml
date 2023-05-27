@@ -1,0 +1,7 @@
+n_gpu_layers: 40
+n_ctx: 512
+max_tokens: 128
+temp: 0.80
+top_p: 0.95
+top_k: 40
+repeat_penalty: 1.1

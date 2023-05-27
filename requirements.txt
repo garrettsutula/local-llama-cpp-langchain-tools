@@ -1,2 +1,4 @@
 langchain
 llama-cpp-python
+python-dotenv
+pyyaml

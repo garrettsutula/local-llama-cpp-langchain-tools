@@ -1,0 +1,36 @@
+template: "### Input:\n{input}\n### Response:\n{prompt}"
+template_input_variables: ["input", "prompt"]
+input_variables: ["input"]
+examples:
+  - input: Year that JFK was born
+    prompt: |
+      ```json
+      {{
+          "prompt": "1917"
+      }}
+      ```
+  - input: population of the state of florida
+    prompt:  |
+      ```json
+      {{
+          "prompt": "21.78 million"
+      }}
+      ```
+  - input: tallest building in the world
+    prompt: |
+      ```json
+      {{
+          "prompt": "Burj Khalifa"
+      }}
+      ```
+prefix: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  You are an AI expert at statistics and have encyclopedic knowledge of most things.
+
+  Respond to the question or statement with an accurate answer, feel free to be as descriptive and detailed as possible if it would be helpful and informative to the reader.
+suffix: "### Input:\n{input}\n### Response:"
+response_schemas:
+  - name: prompt
+    description: answer/response to the input, succinct if there is a straightforward answer but verbose and detailed if it would be helpful to the reader

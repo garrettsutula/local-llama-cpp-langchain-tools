@@ -1,3 +1,10 @@
 models
 venv
 .vscode
+prompt_templates/**
+!prompt_templates/example.yaml
+*.pyc
+__pycache__
+.env
+settings/**
+!settings/default.yaml
