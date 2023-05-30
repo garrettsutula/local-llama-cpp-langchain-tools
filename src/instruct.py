@@ -36,8 +36,6 @@ prompt = FewShotPromptTemplate(
     output_parser=output_parser
 )
 
-# Load and prepare model
-
 settings = {}
 if (args.settings_path):
     with open(f"./settings/{args.settings}", "r") as stream:

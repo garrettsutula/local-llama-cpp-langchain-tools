@@ -31,9 +31,9 @@ def get_args():
         raise Exception("Model path must be specified in .env or cli arg (-m, --model)")
 
     if (args.settings):
-        args.settings_path = args.settings
+        args.settings = args.settings
     elif (config.get("settings")):
-        args.settings_path = config["settings"]
+        args.settings = config["settings"]
 
     # Load prompt template from yaml file
     entries = os.listdir('prompt_templates/')
