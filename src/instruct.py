@@ -1,44 +1,13 @@
-import os
-from dotenv import dotenv_values
 import yaml
+
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain.prompts import PromptTemplate
-
 from langchain.llms import LlamaCpp
 from langchain import FewShotPromptTemplate, PromptTemplate
 
-import cmd_args
+from cmd_args import get_args
 
-args, _ = cmd_args.parser.parse_known_args()
-config = dotenv_values(".env")
-model = ""
-output_path = "./output/"
-settings_path = None
-
-if (args.output):
-    output_path = args.output
-elif (config.get("output")):
-    output_path = config["output"]
-else:
-    output_path = None
-
-if (args.model):
-    model = args.model
-elif (config.get("model")):
-    model = config["model"]
-else:
-    raise Exception("Model path must be specified in .env or cli arg (-m, --model)")
-
-if (args.settings):
-    settings_path = args.settings
-elif (config.get("settings")):
-    settings_path = config["settings"]
-
-# Load prompt template from yaml file
-entries = os.listdir('prompt_templates/')
-if (not args.prompt_template in entries):
-    raise Exception("Prompt template not found in ./prompt_templates, include full file name")
-
+args = get_args()
 
 # Load and prepare prompt template
 
@@ -70,7 +39,7 @@ prompt = FewShotPromptTemplate(
 # Load and prepare model
 
 settings = {}
-if (settings_path):
+if (args.settings_path):
     with open(f"./settings/{args.settings}", "r") as stream:
         try:
             settings = yaml.safe_load(stream)
@@ -78,7 +47,7 @@ if (settings_path):
             print(e)
 
 llm = LlamaCpp(
-    model_path=f"{model}", 
+    model_path=f"{args.model_path}", 
     n_gpu_layers=settings.get("n_gpu_layers"), 
     n_ctx=settings.get("n_ctx") or 512,
     max_tokens=settings.get("max_tokens") or 128,
@@ -94,8 +63,8 @@ for i in range(args.quantity):
     output = llm(_input.to_string())
     try:
         parsed = output_parser.parse(output)
-        if (output_path):
-            file1 = open(f"{output_path}/{args.prompt_template.split('.')[0]}-{args.input.split()[0]}.txt", "a")
+        if (args.output_path):
+            file1 = open(f"{args.output_path}/{args.prompt_template.split('.')[0]}-{args.input.split()[0]}.txt", "a")
             file1.write(parsed["prompt"] + "\n")
             file1.close()
         else:

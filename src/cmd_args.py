@@ -1,5 +1,5 @@
-import argparse
-import os
+import argparse, os
+from dotenv import dotenv_values
 
 parser = argparse.ArgumentParser(description="SD.Next", conflict_handler='resolve', epilog='For other options see UI Settings page', prog='', add_help=True, formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=55, indent_increment=2, width=200))
 parser._optionals = parser.add_argument_group('Other options') # pylint: disable=protected-access
@@ -14,4 +14,30 @@ group.add_argument("-s", "--settings", help="Settings file to load from './setti
 
 def get_args():
     args = parser.parse_args()
+    config = dotenv_values(".env")
+
+    if (args.output):
+        args.output_path = args.output
+    elif (config.get("output")):
+        args.output_path = config["output"]
+    else:
+        args.output_path = None
+
+    if (args.model):
+        args.model_path = args.model
+    elif (config.get("model")):
+        args.model_path = config["model"]
+    else:
+        raise Exception("Model path must be specified in .env or cli arg (-m, --model)")
+
+    if (args.settings):
+        args.settings_path = args.settings
+    elif (config.get("settings")):
+        args.settings_path = config["settings"]
+
+    # Load prompt template from yaml file
+    entries = os.listdir('prompt_templates/')
+    if (not args.prompt_template in entries):
+        raise Exception("Prompt template not found in ./prompt_templates, include full file name")
+    
     return args
