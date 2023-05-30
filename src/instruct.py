@@ -94,14 +94,14 @@ for i in range(args.quantity):
     output = llm(_input.to_string())
     try:
         parsed = output_parser.parse(output)
+        if (output_path):
+            file1 = open(f"{output_path}/{args.prompt_template.split('.')[0]}-{args.input.split()[0]}.txt", "a")
+            file1.write(parsed["prompt"] + "\n")
+            file1.close()
+        else:
+            print(parsed["prompt"])
     except:
         # no-op
         print("Parsing failed, skipping saving prompt")
         print(f"Output:\n{output}")
-    if (output_path):
-        file1 = open(f"{output_path}/{args.prompt_template.split('.')[0]}-{args.input.split()[0]}.txt", "a")
-        file1.write(parsed["prompt"] + "\n")
-        file1.close()
-    else:
-        print(parsed["prompt"])
 
