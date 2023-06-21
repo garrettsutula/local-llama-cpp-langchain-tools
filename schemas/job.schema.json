@@ -1,42 +1,59 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "$ref": "#/definitions/Job",
-  "definitions": {
-      "Job": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-              "settingsFileName": {
-                  "type": "string"
-              },
-              "templateFileName": {
-                  "type": "string"
-              },
-              "modelPath": {
-                  "type": "string"
-              },
-              "outputPath": {
-                  "type": "string"
-              },
-              "quantity": {
-                  "type": "integer"
-              },
-              "inputs": {
-                  "type": "array",
-                  "items": {
-                      "type": "string"
-                  }
-              }
-          },
-          "required": [
-              "inputs",
-              "modelPath",
-              "outputPath",
-              "quantity",
-              "settingsFileName",
-              "templateFileName"
-          ],
-          "title": "Job"
-      }
-  }
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Job",
+    "definitions": {
+        "Job": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "settingsFileName": {
+                    "type": "string"
+                },
+                "templateFileName": {
+                    "type": "string"
+                },
+                "modelPath": {
+                    "type": "string"
+                },
+                "modelPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "outputPath": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "inputs",
+                "outputPath",
+                "quantity",
+                "settingsFileName",
+                "templateFileName"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "modelPath"
+                    ]
+                },
+                {
+                    "required": [
+                        "modelPaths"
+                    ]
+                }
+            ],
+            "title": "Job"
+        }
+    }
 }
