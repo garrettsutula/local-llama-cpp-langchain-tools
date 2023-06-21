@@ -8,3 +8,5 @@ __pycache__
 .env
 settings/**
 !settings/default.yaml
+jobs/**
+!jobs/example.yaml
