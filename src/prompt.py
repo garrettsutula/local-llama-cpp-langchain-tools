@@ -30,7 +30,7 @@ def loadFewShot(templateFileName: str) -> dict[FewShotPromptTemplate, Structured
       output_parser=output_parser
   )
 
-  return { prompt, output_parser }
+  return [ prompt, output_parser ]
 
 def runPrompt(
         input: str,
