@@ -39,3 +39,4 @@ Templates can be defined in `./prompt_templates/**/*`, a json schema is provided
 ## Generation Settings
 
 Generation settings can be defined in `./settings/**/*`, a json schema is provided as documentation and for schema validation in vscode with the [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) extension.
+
