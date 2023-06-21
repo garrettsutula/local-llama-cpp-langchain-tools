@@ -4,23 +4,23 @@ from cmd_args import get_args
 from model import loadModel
 from prompt import loadFewShot, runPrompt
 
+args = get_args()
 
-def runJob(jobFileName: str):
-  jobSettings = None
-  with open(f"./jobs/{jobFileName}", "r") as stream:
-      try:
-          jobSettings = yaml.safe_load(stream)
-      except yaml.YAMLError as e:
-          print(e)
+jobSettings = None
+with open(f"./jobs/{args.name}", "r") as stream:
+    try:
+        jobSettings = yaml.safe_load(stream)
+    except yaml.YAMLError as e:
+        print(e)
 
-  prompt, output_parser = loadFewShot(templateFileName=jobSettings["templateFileName"])
+prompt, output_parser = loadFewShot(templateFileName=jobSettings["templateFileName"])
 
-  llm = loadModel(
-      settingsFileName=jobSettings["settingsFileName"],
-      modelPath=jobSettings["modelPath"]
-      )
+llm = loadModel(
+    settingsFileName=jobSettings["settingsFileName"],
+    modelPath=jobSettings["modelPath"]
+    )
 
-  for input in jobSettings["inputs"]:
+for input in jobSettings["inputs"]:
     for i in range(jobSettings['quantity']):
         print(f"Generating {i + 1} of {jobSettings['quantity']}")
         parsed = runPrompt(input=input, prompt=prompt, llm=llm, outputParser=output_parser)
