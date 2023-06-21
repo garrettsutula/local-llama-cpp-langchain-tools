@@ -15,7 +15,7 @@ with open(f"./jobs/{args.name}", "r") as stream:
 
 prompt, output_parser = loadFewShot(templateFileName=jobSettings["templateFileName"])
 
-modelPaths = jobSettings["modelPaths"] or [jobSettings["modelPath"]]
+modelPaths = jobSettings.get("modelPaths") or [jobSettings["modelPath"]]
 
 for modelPath in modelPaths:
     llm = loadModel(
