@@ -38,7 +38,7 @@ prompt = FewShotPromptTemplate(
 
 settings = {}
 if (args.settings_path):
-    with open(f"./settings/{args.settings}", "r") as stream:
+    with open(f"./settings/{args.settings_path}", "r") as stream:
         try:
             settings = yaml.safe_load(stream)
         except yaml.YAMLError as e:
