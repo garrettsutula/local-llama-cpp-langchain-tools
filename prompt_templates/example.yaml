@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../schemas/template.schema.json
 template: "### Input:\n{input}\n### Response:\n{prompt}"
 template_input_variables: ["input", "prompt"]
 input_variables: ["input"]
