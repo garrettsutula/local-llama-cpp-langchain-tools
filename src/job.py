@@ -20,11 +20,11 @@ settingsFileNames = jobSettings.get("settingsFileNames") or [jobSettings["settin
 
 for modelPath in modelPaths:
     for settingsFileName in settingsFileNames:
-        print(f"Using settings '{settingsFileName}'")
         llm = loadModel(
         settingsFileName=settingsFileName,
         modelPath=modelPath
         )
+        print(f"Using settings '{settingsFileName}'")
         for input in jobSettings["inputs"]:
             print(f"Generating {jobSettings['quantity']}x '{input}'")
             for i in range(jobSettings['quantity']):
