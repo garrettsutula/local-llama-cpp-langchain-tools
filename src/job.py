@@ -37,3 +37,4 @@ for modelPath in modelPaths:
                         file1.close()
                     else:
                         print(parsed["prompt"])
+        del(llm)
