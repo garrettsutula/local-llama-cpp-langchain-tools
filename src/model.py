@@ -18,5 +18,6 @@ def loadModel(settingsFileName: str, modelPath: str) -> LlamaCpp:
       temperature=settings.get("temp"),
       top_k=settings.get("top_k"),
       top_p=settings.get("top_p"),
-      repeat_penalty=settings.get("repeat_penalty")
+      repeat_penalty=settings.get("repeat_penalty"),
+      use_mlock=False
   )
