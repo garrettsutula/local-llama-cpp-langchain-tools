@@ -31,8 +31,9 @@ for modelPath in modelPaths:
                 print(f"Generating {i + 1} of {jobSettings['quantity']}")
                 parsed = runPrompt(input=input, prompt=prompt, llm=llm, outputParser=output_parser)
                 if (parsed and parsed["prompt"]):
+                    prefix = '' if len(settingsFileNames) == 1 else f"{settingsFileName}-"
                     if (jobSettings['outputPath']):
-                        file1 = open(f"{jobSettings['outputPath']}/{jobSettings['templateFileName'].split('.')[0]}-{input.split()[0]}.txt", "a")
+                        file1 = open(f"{jobSettings['outputPath']}/{prefix}{jobSettings['templateFileName'].split('.')[0]}-{input.split()[0]}.txt", "a")
                         file1.write(parsed["prompt"] + "\n")
                         file1.close()
                     else:
