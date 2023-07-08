@@ -20,20 +20,20 @@ settingsFileNames = jobSettings.get("settingsFileNames") or [jobSettings["settin
 
 for modelPath in modelPaths:
     for settingsFileName in settingsFileNames:
-        llm = loadModel(
+        with loadModel(
         settingsFileName=settingsFileName,
         modelPath=modelPath
-        )
-        print(f"Using settings '{settingsFileName}'")
-        for input in jobSettings["inputs"]:
-            print(f"Generating {jobSettings['quantity']}x '{input}'")
-            for i in range(jobSettings['quantity']):
-                print(f"Generating {i + 1} of {jobSettings['quantity']}")
-                parsed = runPrompt(input=input, prompt=prompt, llm=llm, outputParser=output_parser)
-                if (parsed and parsed["prompt"]):
-                    if (jobSettings['outputPath']):
-                        file1 = open(f"{jobSettings['outputPath']}/{jobSettings['templateFileName'].split('.')[0]}-{input.split()[0]}.txt", "a")
-                        file1.write(parsed["prompt"] + "\n")
-                        file1.close()
-                    else:
-                        print(parsed["prompt"])
+        ) as llm:
+            print(f"Using settings '{settingsFileName}'")
+            for input in jobSettings["inputs"]:
+                print(f"Generating {jobSettings['quantity']}x '{input}'")
+                for i in range(jobSettings['quantity']):
+                    print(f"Generating {i + 1} of {jobSettings['quantity']}")
+                    parsed = runPrompt(input=input, prompt=prompt, llm=llm, outputParser=output_parser)
+                    if (parsed and parsed["prompt"]):
+                        if (jobSettings['outputPath']):
+                            file1 = open(f"{jobSettings['outputPath']}/{jobSettings['templateFileName'].split('.')[0]}-{input.split()[0]}.txt", "a")
+                            file1.write(parsed["prompt"] + "\n")
+                            file1.close()
+                        else:
+                            print(parsed["prompt"])
