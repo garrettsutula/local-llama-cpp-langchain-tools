@@ -9,4 +9,4 @@ __pycache__
 settings/**
 !settings/default.yaml
 jobs/**
-!jobs/example.yaml
+!jobs/example*

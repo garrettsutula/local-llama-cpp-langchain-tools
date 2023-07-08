@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=../schemas/job.schema.json
+settingsFileNames: 
+  - default.yaml
+templateFileName: example.yaml
+modelPath: ./models/ggml-bin-file.bin
+outputPath: ./outputs
+quantity: 20
+inputs:
+  - test prompt

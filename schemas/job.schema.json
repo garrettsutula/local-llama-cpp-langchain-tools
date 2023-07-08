@@ -9,6 +9,12 @@
                 "settingsFileName": {
                     "type": "string"
                 },
+                "settingsFileNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "templateFileName": {
                     "type": "string"
                 },
@@ -38,18 +44,31 @@
                 "inputs",
                 "outputPath",
                 "quantity",
-                "settingsFileName",
                 "templateFileName"
             ],
             "oneOf": [
                 {
                     "required": [
-                        "modelPath"
+                        "modelPath",
+                        "settingsFileName"
                     ]
                 },
                 {
                     "required": [
-                        "modelPaths"
+                        "modelPaths",
+                        "settingsFileName"
+                    ]
+                },
+                {
+                    "required": [
+                        "modelPath",
+                        "settingsFileNames"
+                    ]
+                },
+                {
+                    "required": [
+                        "modelPaths",
+                        "settingsFileNames"
                     ]
                 }
             ],
