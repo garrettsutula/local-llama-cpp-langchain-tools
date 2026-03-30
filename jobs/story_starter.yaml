@@ -1,0 +1,8 @@
+settingsFileName: default.yaml
+templateFileName: story_starter.yaml
+modelPath: ./models/ggml-bin-file.bin
+outputPath: ./outputs
+quantity: 3
+inputs:
+  - "A cartographer is hired to map a city that doesn't appear on any existing chart."
+  - "An archivist finds a letter addressed to them, written 200 years ago."

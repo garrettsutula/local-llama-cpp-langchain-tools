@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../schemas/template.schema.json
+# Uses response_schemas to produce structured JSON output via JsonOutputParser.
+# Each result will be a dict with "sentiment", "confidence", and "reason" keys.
+template: "### Review:\n{input}\n### Analysis:\n{prompt}"
+template_input_variables: ["input", "prompt"]
+input_variables: ["input"]
+response_schemas:
+  - name: sentiment
+    description: "Overall sentiment of the text. Must be exactly one of: positive, negative, or neutral."
+  - name: confidence
+    description: "Confidence level of the sentiment classification. Must be exactly one of: high, medium, or low."
+  - name: reason
+    description: "One sentence explaining the main signal that drove the sentiment classification."
+examples:
+  - input: "The battery life on this laptop is incredible — I get 14 hours on a single charge. The keyboard is comfortable and the display is crisp."
+    prompt: '{"sentiment": "positive", "confidence": "high", "reason": "Strongly positive language around battery life, keyboard comfort, and display quality with no negative signals."}'
+  - input: "Shipping took three weeks and the box arrived damaged. The product itself works but I expected much better packaging for the price."
+    prompt: '{"sentiment": "negative", "confidence": "medium", "reason": "Complaints about slow shipping and damaged packaging outweigh the neutral remark about the product working."}'
+  - input: "It does what it says on the box. Nothing special, nothing broken."
+    prompt: '{"sentiment": "neutral", "confidence": "high", "reason": "Flat, unenthusiastic language with no strong positive or negative descriptors."}'
+prefix: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  You are a sentiment analysis model. Classify the sentiment of the provided review and explain your reasoning.
+  Always respond using the exact JSON format shown in the examples.
+suffix: "### Review:\n{input}\n### Analysis:"

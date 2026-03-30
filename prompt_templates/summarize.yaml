@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/template.schema.json
+template: "### Text:\n{input}\n### Summary:\n{prompt}"
+template_input_variables: ["input", "prompt"]
+input_variables: ["input"]
+examples:
+  - input: "The Apollo 11 mission launched on July 16, 1969, carrying astronauts Neil Armstrong, Buzz Aldrin, and Michael Collins. On July 20, Armstrong and Aldrin descended to the lunar surface in the Eagle lander while Collins orbited above. Armstrong became the first human to walk on the Moon, famously stating 'That's one small step for man, one giant leap for mankind.' The crew returned safely to Earth on July 24."
+    prompt: "Apollo 11 (July 1969) landed the first humans on the Moon. Armstrong and Aldrin walked the surface while Collins orbited; all three returned safely to Earth."
+  - input: "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy—usually from the sun—into chemical energy stored as glucose. This process takes place primarily in the chloroplasts, using chlorophyll to absorb light. Carbon dioxide from the air and water from the soil are the raw materials; oxygen is released as a byproduct. The overall reaction can be summarized as: 6CO2 + 6H2O + light energy → C6H12O6 + 6O2."
+    prompt: "Photosynthesis converts sunlight, CO2, and water into glucose and oxygen inside plant chloroplasts, using chlorophyll to capture light energy."
+  - input: "The Great Wall of China is a series of fortifications built across northern China over many centuries, with major construction during the Ming dynasty (1368–1644). Stretching over 13,000 miles in total, it was built to protect Chinese states from nomadic invasions from the north. Contrary to popular belief, it is not visible from space with the naked eye. Today it is a UNESCO World Heritage Site and one of the most visited tourist attractions in the world."
+    prompt: "The Great Wall of China, mostly built during the Ming dynasty, spans 13,000+ miles and was constructed to defend against northern invasions. It is now a UNESCO World Heritage Site."
+prefix: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  You are an expert editor and summarizer. Given a passage of text, write a concise 1-2 sentence summary that captures the key information.
+  Be accurate, neutral in tone, and omit minor details.
+suffix: "### Text:\n{input}\n### Summary:"

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/template.schema.json
+template: "### Premise:\n{input}\n### Opening:\n{prompt}"
+template_input_variables: ["input", "prompt"]
+input_variables: ["input"]
+examples:
+  - input: "A lighthouse keeper discovers a message in a bottle containing tomorrow's newspaper."
+    prompt: "The storm had kept Maren inside for three days. When it finally broke, she walked the tideline out of habit, her boots crunching over kelp and shattered crab shells — and stopped. The bottle was green glass, old, sealed with wax. Inside, folded neatly, was a newspaper. She checked the date twice. It read the fourteenth. Today was the eleventh."
+  - input: "A retired astronaut receives a radio signal that only she can decode."
+    prompt: "Yolanda had not touched a radio receiver in eleven years. She grew tomatoes now, and that was enough. So when the old Kenwood she kept in the garage crackled to life at 3 a.m. on a Tuesday, she almost didn't get up. Almost. The signal was in a frequency allocation she recognised. Deep space. And the pattern — she sat down on the cold concrete floor — the pattern was hers."
+  - input: "Two strangers realize they have been dreaming about each other for years."
+    prompt: "Marcus ordered black coffee and opened his book, the same table by the window he always chose. Then the door opened and his stomach dropped. He knew her coat. He knew the way she tucked her hair behind her left ear. He had never seen her before in his life."
+prefix: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  You are a creative fiction writer. Given a story premise, write a compelling opening paragraph (3-5 sentences) that establishes atmosphere,
+  introduces the central tension, and hooks the reader. Use vivid, concrete detail. Avoid clichés.
+suffix: "### Premise:\n{input}\n### Opening:"

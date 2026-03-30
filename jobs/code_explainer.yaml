@@ -1,0 +1,9 @@
+settingsFileName: default.yaml
+templateFileName: code_explainer.yaml
+modelPath: ./models/ggml-bin-file.bin
+outputPath: ./outputs
+quantity: 1
+inputs:
+  - "sorted(items, key=lambda x: x['score'], reverse=True)"
+  - "dict(zip(keys, values))"
+  - "@staticmethod\ndef validate(value): return isinstance(value, int) and value >= 0"
