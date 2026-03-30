@@ -1,11 +1,9 @@
 import yaml
 
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
-from langchain.prompts import PromptTemplate
-from langchain import FewShotPromptTemplate, PromptTemplate
-from langchain.llms import LlamaCpp
+from langchain.prompts import FewShotPromptTemplate, PromptTemplate
 
-def loadFewShot(templateFileName: str) -> dict[FewShotPromptTemplate, StructuredOutputParser]:
+def loadFewShot(templateFileName: str):
   prompt_template = None
   with open(f"./prompt_templates/{templateFileName}", "r") as stream:
       try:
@@ -13,8 +11,10 @@ def loadFewShot(templateFileName: str) -> dict[FewShotPromptTemplate, Structured
       except yaml.YAMLError as e:
           print(e)
 
-  response_schemas = list(map(lambda prop: ResponseSchema(name=prop["name"], description=prop["description"]), prompt_template["response_schemas"]))
-  output_parser = StructuredOutputParser.from_response_schemas(response_schemas=response_schemas)
+  output_parser = None
+  if prompt_template.get("response_schemas"):
+      response_schemas = list(map(lambda prop: ResponseSchema(name=prop["name"], description=prop["description"]), prompt_template["response_schemas"]))
+      output_parser = StructuredOutputParser.from_response_schemas(response_schemas=response_schemas)
 
   example_prompt = PromptTemplate(
       template=prompt_template["template"],
@@ -34,18 +34,17 @@ def loadFewShot(templateFileName: str) -> dict[FewShotPromptTemplate, Structured
 
 def runPrompt(
         input: str,
-        prompt: PromptTemplate,  
-        llm: LlamaCpp, 
+        prompt: PromptTemplate,
+        llm,
         outputParser: StructuredOutputParser
         ) -> str:
     _input = prompt.format_prompt(input=input)
-    output = llm(_input.to_string())
-    if (outputParser):
+    output = llm.invoke(_input.to_string())
+    if outputParser:
         try:
             parsed = outputParser.parse(output)
             return parsed
         except:
-            # no-op
             print("Parsing failed, skipping saving prompt")
             print(f"Output:\n\n{output}")
     else:
