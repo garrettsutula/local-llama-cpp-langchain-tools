@@ -1,7 +1,7 @@
 import yaml
 
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema
-from langchain.prompts import FewShotPromptTemplate, PromptTemplate
+from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain_classic.prompts import FewShotPromptTemplate, PromptTemplate
 
 def loadFewShot(templateFileName: str):
   prompt_template = None
