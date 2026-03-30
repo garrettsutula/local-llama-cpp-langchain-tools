@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/template.schema.json
+template: "### Code:\n{input}\n### Explanation:\n{prompt}"
+template_input_variables: ["input", "prompt"]
+input_variables: ["input"]
+examples:
+  - input: "def fib(n): return n if n <= 1 else fib(n-1) + fib(n-2)"
+    prompt: "Recursive Fibonacci function. Returns n directly for base cases (0 or 1), otherwise sums the two preceding Fibonacci numbers by calling itself recursively."
+  - input: "result = [x**2 for x in range(10) if x % 2 == 0]"
+    prompt: "List comprehension that builds a list of squares of even numbers from 0 to 9. Filters with `if x % 2 == 0`, then squares each value with `x**2`. Result is [0, 4, 16, 36, 64]."
+  - input: "with open('data.txt', 'r') as f: lines = f.readlines()"
+    prompt: "Opens 'data.txt' for reading using a context manager. The `with` block ensures the file is automatically closed when done. `readlines()` reads all lines into a list of strings."
+prefix: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  You are an expert software engineer and technical writer. Explain the provided code snippet clearly and concisely.
+  Describe what the code does, how it works, and any important details a developer should know.
+suffix: "### Code:\n{input}\n### Explanation:"

@@ -1,0 +1,9 @@
+settingsFileName: default.yaml
+templateFileName: sentiment.yaml
+modelPath: ./models/ggml-bin-file.bin
+outputPath: ./outputs
+quantity: 1
+inputs:
+  - "Absolutely love this coffee maker. Heats up in under a minute and the brew is rich and smooth every time. Easily the best appliance I've bought this year."
+  - "The hotel room smelled musty and the Wi-Fi was unusable. Staff were polite but couldn't fix anything. Wouldn't stay here again."
+  - "Arrived on time. Packaging was fine. Product matches the description."

@@ -3,6 +3,10 @@ venv
 .vscode
 prompt_templates/**
 !prompt_templates/example.yaml
+!prompt_templates/code_explainer.yaml
+!prompt_templates/sentiment.yaml
+!prompt_templates/story_starter.yaml
+!prompt_templates/summarize.yaml
 *.pyc
 __pycache__
 .env
@@ -10,3 +14,8 @@ settings/**
 !settings/default.yaml
 jobs/**
 !jobs/example*
+!jobs/code_explainer.yaml
+!jobs/sentiment.yaml
+!jobs/story_starter.yaml
+!jobs/summarize.yaml
+.claude

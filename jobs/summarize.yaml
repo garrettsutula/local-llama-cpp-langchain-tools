@@ -1,0 +1,8 @@
+settingsFileName: default.yaml
+templateFileName: summarize.yaml
+modelPath: ./models/ggml-bin-file.bin
+outputPath: ./outputs
+quantity: 1
+inputs:
+  - "The Eiffel Tower was built by Gustave Eiffel's engineering company and erected between 1887 and 1889 as the entrance arch for the 1889 World's Fair in Paris. Standing 330 meters tall, it was the world's tallest man-made structure for 41 years. Initially criticized by some of France's leading artists and intellectuals, it has since become a global cultural icon of France and one of the most recognizable structures in the world, attracting about 7 million visitors per year."
+  - "Black holes are regions of spacetime where gravity is so strong that nothing — not even light or other electromagnetic waves — can escape once it crosses the event horizon. They form when massive stars collapse at the end of their life cycle. Despite their name, black holes are not empty space; they contain an enormous amount of mass packed into an extremely small area. Astronomers detect them indirectly through their gravitational effects on nearby matter and the radiation emitted by infalling gas."
