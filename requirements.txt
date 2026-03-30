@@ -1,4 +1,6 @@
-langchain
-llama-cpp-python
-python-dotenv
-pyyaml
+langchain==1.2.13
+langchain-community==0.4.1
+langchain-core==1.2.23
+llama-cpp-python==0.3.19
+python-dotenv==1.2.2
+pyyaml==6.0.3

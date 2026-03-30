@@ -44,7 +44,6 @@
                 "examples",
                 "input_variables",
                 "prefix",
-                "response_schemas",
                 "suffix",
                 "template",
                 "template_input_variables"

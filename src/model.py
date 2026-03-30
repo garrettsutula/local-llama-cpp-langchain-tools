@@ -1,5 +1,5 @@
 import yaml
-from langchain.llms import LlamaCpp
+from langchain_community.llms import LlamaCpp
 
 def loadModel(settingsFileName: str, modelPath: str) -> LlamaCpp:
   settings = {}
